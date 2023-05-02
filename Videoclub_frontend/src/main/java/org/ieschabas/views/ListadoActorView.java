@@ -84,9 +84,7 @@ public class ListadoActorView extends HorizontalLayout {
 	        
 	        
 	        
-	        Button borrar = new Button(new Icon(VaadinIcon.TRASH));
-	        Button modificar = new Button(new Icon(VaadinIcon.PENCIL));
-	        add(gridActor,borrar,modificar);
+	        add(gridActor);
 	      
 	        
 	       
@@ -94,12 +92,12 @@ public class ListadoActorView extends HorizontalLayout {
 	 }
 
 	private Object modificarActor(Actor actor) throws NumberFormatException, IOException {
-		gestoractor.modificarActor(actores, ficheroActor);
+		actores = gestoractor.modificarActor(actores, ficheroActor);
 		return null;
 	}
 
 	private Object eliminarActor(Actor actor) throws NumberFormatException, IOException {
-		gestoractor.eliminarActor(actores, ficheroActor);
+		actores = gestoractor.eliminarActor(actores, ficheroActor);
 		return null;
 	} 
 	        

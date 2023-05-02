@@ -1,32 +1,59 @@
 package org.ieschabas.views;
 
-import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.textfield.TextField;
+
+import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.tabs.Tab;
+import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
 
 @PageTitle("Main")
 @Route(value = "")
-public class MainView extends HorizontalLayout {
+public class MainView extends AppLayout {
 
-    private TextField name;
-    private Button sayHello;
+	 public MainView() {
+	        DrawerToggle toggle = new DrawerToggle();
 
-    public MainView() {
-        name = new TextField("Your name");
-        sayHello = new Button("Say hello");
-        sayHello.addClickListener(e -> {
-            Notification.show("Hello " + name.getValue());
-        });
-        sayHello.addClickShortcut(Key.ENTER);
+	        H1 title = new H1("MyApp");
+	        title.getStyle().set("font-size", "var(--lumo-font-size-l)")
+	                .set("margin", "0");
 
-        setMargin(true);
-        setVerticalComponentAlignment(Alignment.END, name, sayHello);
+	        Tabs tabs = getTabs();
 
-        add(name, sayHello);
-    }
+	        addToDrawer(tabs);
+	        addToNavbar(toggle, title);
+	    }
+	    // end::snippet[]
 
+	    private Tabs getTabs() {
+	        Tabs tabs = new Tabs();
+	        tabs.add(createTab(VaadinIcon.FILM, "Películas"),
+	                createTab(VaadinIcon.USER, "Actores"),
+	                createTab(VaadinIcon.USER, "Directores"),
+	                createTab(VaadinIcon.CART, "Alquileres"));
+	        tabs.setOrientation(Tabs.Orientation.VERTICAL);
+	        return tabs;
+	    }
+
+	    private Tab createTab(VaadinIcon viewIcon, String viewName) {
+	        Icon icon = viewIcon.create();
+	        icon.getStyle().set("box-sizing", "border-box")
+	                .set("margin-inline-end", "var(--lumo-space-m)")
+	                .set("margin-inline-start", "var(--lumo-space-xs)")
+	                .set("padding", "var(--lumo-space-xs)");
+
+	        RouterLink link = new RouterLink();
+	        link.add(icon, new Span(viewName));
+	        // Demo has no routes
+	        // link.setRoute(viewClass.java);
+	        link.setTabIndex(-1);
+
+	        return new Tab(link);
+	    }
 }
