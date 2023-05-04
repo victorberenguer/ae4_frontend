@@ -7,6 +7,7 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.PageTitle;
@@ -15,8 +16,8 @@ import com.vaadin.flow.router.RouterLink;
 
 @PageTitle("Main")
 @Route(value = "")
-public class MainView extends AppLayout {
-
+public class MainView extends AppLayout{
+	 LoginForm loginForm = new LoginForm();
 	 public MainView() {
 	        DrawerToggle toggle = new DrawerToggle();
 
@@ -56,4 +57,9 @@ public class MainView extends AppLayout {
 
 	        return new Tab(link);
 	    }
+	    
+	   
+	    
+	   
+	    
 }
