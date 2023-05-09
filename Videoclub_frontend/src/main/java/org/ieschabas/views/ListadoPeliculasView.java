@@ -11,6 +11,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -29,6 +30,9 @@ public class ListadoPeliculasView extends FormLayout{
 	 File ficheroPelicula= new File("peliculas.csv");
 	 
 	public  ListadoPeliculasView() throws IOException  {
+		
+		
+		
 		 peliculas = gestorPeliculas.listarPelicula(peliculas,ficheroPelicula);
 	        // tag::snippet[]
 		   
@@ -147,6 +151,10 @@ public class ListadoPeliculasView extends FormLayout{
 		 botonCrear.getUI().ifPresent(ui ->
 	                   ui.navigate("FormularioPeliculaView"))
 	        );
+		 
+		 
+	
+		 
 	        
 	        add(gridPelicula,botonCrear);
 	        

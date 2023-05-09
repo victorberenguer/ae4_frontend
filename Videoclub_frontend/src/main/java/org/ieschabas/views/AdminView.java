@@ -44,11 +44,13 @@ public class AdminView extends AppLayout {
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
         tabs.add(createTab(VaadinIcon.DASHBOARD, "Películas"),
-                createTab(VaadinIcon.CART, "Actores"),
-                createTab(VaadinIcon.USER_HEART, "Directores"),
+                createTabEquipo(VaadinIcon.CART, "Actores","actor"),
+                createTabEquipo(VaadinIcon.USER_HEART, "Directores","director"),
                 createTab(VaadinIcon.PACKAGE, "Alquileres"));
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         return tabs;
+        
+        
     }
 
     private Tab createTab(VaadinIcon viewIcon, String viewName) {
@@ -60,8 +62,22 @@ public class AdminView extends AppLayout {
 
         RouterLink link = new RouterLink();
         link.add(icon, new Span(viewName));
-        // Demo has no routes
         // link.setRoute(viewClass.java);
+        link.setTabIndex(-1);
+
+        return new Tab(link);
+    }
+    
+    private Tab createTabEquipo(VaadinIcon viewIcon, String viewName,String rol) {
+        Icon icon = viewIcon.create();
+        icon.getStyle().set("box-sizing", "border-box")
+                .set("margin-inline-end", "var(--lumo-space-m)")
+                .set("margin-inline-start", "var(--lumo-space-xs)")
+                .set("padding", "var(--lumo-space-xs)");
+
+        RouterLink link = new RouterLink();
+        link.add(icon, new Span(viewName));
+        link.setRoute(ListadoEquipoView.class,rol);
         link.setTabIndex(-1);
 
         return new Tab(link);

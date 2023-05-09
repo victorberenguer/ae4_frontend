@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.ieschabas.clases.Actor;
 import org.ieschabas.clases.Director;
+import org.ieschabas.librerias.GestorActor;
 import org.ieschabas.librerias.GestorDirector;
 
 import com.vaadin.flow.component.button.Button;
@@ -15,38 +17,37 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-@Route("FormularioDirectorView")
 
-public class FormularioDirectorView extends HorizontalLayout {
+@Route("FormularioActorView")
+public class FormularioEquipoView extends HorizontalLayout  {
 
-	GestorDirector gestorDirector = new GestorDirector();
-	private static ArrayList<Director> listarDirectores = new ArrayList<Director>();
-	private static int contadorDirector = 0;
-	File ficheroDirector = new File("directores.csv");
-	FormLayout formularioDirector = new FormLayout();
+	GestorActor gestorActor = new GestorActor();
+	FormLayout formularioActor = new FormLayout();
+	private static ArrayList<Actor> listarActores = new ArrayList<Actor>();
+	private static int contadorActor = 0;
+	File archivoActor = new File("actores.csv");
 
-	public FormularioDirectorView() throws IOException {
-
+	public FormularioEquipoView() throws IOException {
+		
 		TextField nombre = new TextField("Nombre");
 		TextField apellidos = new TextField("Apellidos");
 		TextField pais = new TextField("Pais");
 		TextField anyoNacimiento = new TextField("Año de nacimiento");
 
 		/**
-		 * El botón de guardar de el Director con un clicklistener para que cuando haga
+		 * El botón de guardar de el Actor con un clicklistener para que cuando haga
 		 * click en guardar escriba los datos en el fichero mediante el metodo de
-		 * crearDirector
+		 * crearActor
 		 */
+		Button guardarActor = new Button("CrearActor");
+		guardarActor.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SUCCESS);
 
-		Button guardarDirector = new Button("CrearDirector");
-		guardarDirector.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SUCCESS);
-
-		guardarDirector.addClickListener(clickEvent -> {
+		guardarActor.addClickListener(clickEvent -> {
 			try {
 
-				contadorDirector += 1;
+				contadorActor += 1;
 
-				listarDirectores = gestorDirector.crearDirector(ficheroDirector, listarDirectores, nombre.getValue(),
+				listarActores = gestorActor.crearActor(archivoActor, listarActores, nombre.getValue(),
 						apellidos.getValue(), pais.getValue(), anyoNacimiento.getValue());
 
 			} catch (IOException e) {
@@ -59,16 +60,18 @@ public class FormularioDirectorView extends HorizontalLayout {
 		 * Introducimos los campos de texto y los botones al formulario
 		 */
 
-		formularioDirector.add(nombre, apellidos, pais, anyoNacimiento, guardarDirector);
-		formularioDirector.setResponsiveSteps(
+		formularioActor.add(nombre, apellidos, pais, anyoNacimiento, guardarActor);
+		formularioActor.setResponsiveSteps(
 				// Use one column by default
 				new ResponsiveStep("0", 1),
 				// Use two columns, if layout's width exceeds 500px
 				new ResponsiveStep("500px", 2));
 		// Stretch the username field over 2 columns
-		formularioDirector.setColspan(nombre, 2);
+		formularioActor.setColspan(nombre, 2);
 
-		add(formularioDirector);
+		add(formularioActor);
 
 	}
+	
+
 }
