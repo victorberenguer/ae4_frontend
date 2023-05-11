@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import org.ieschabas.clases.Actor;
 import org.ieschabas.clases.Pelicula;
+import org.ieschabas.daos.PeliculaDao;
 import org.ieschabas.enums.Categoria;
 import org.ieschabas.enums.Formato;
 import org.ieschabas.enums.Valoracion;
@@ -58,12 +59,8 @@ public class FormularioPeliculaView extends FormLayout {
                     ButtonVariant.LUMO_SUCCESS);
             guardar.addClickListener(clickEvent -> {
                 
-                	try {
-						listarPelicula = gestorPeliculas.crearPelicula(ficheroPelicula,listarPelicula,titulo.getValue(),descripcion.getValue(),duracion.getValue(),(Categoria)categoria.getValue(),(Formato)formato.getValue(),(Valoracion)valoracion.getValue(),anyoPublicacion.getValue());
-					} catch (IOException e) {
-						e.printStackTrace();
-						
-					}
+                	PeliculaDao.guardarPelicula(null);
+					//listarPelicula = gestorPeliculas.crearPelicula(ficheroPelicula,listarPelicula,titulo.getValue(),descripcion.getValue(),duracion.getValue(),(Categoria)categoria.getValue(),(Formato)formato.getValue(),(Valoracion)valoracion.getValue(),anyoPublicacion.getValue());
                 
               
             });

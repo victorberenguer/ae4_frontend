@@ -1,11 +1,10 @@
 package org.ieschabas.views;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.ieschabas.clases.Actor;
 import org.ieschabas.clases.Equipo;
 import org.ieschabas.daos.EquipoDao;
 import org.ieschabas.librerias.GestorActor;
@@ -30,12 +29,13 @@ import com.vaadin.flow.router.Route;
 
 @Route("ListadoEquipoView")
 public class ListadoEquipoView extends HorizontalLayout implements HasUrlParameter<String> {
-	private Span status;
 	
-	 Grid<Equipo> grid = new Grid<>(Equipo.class);
-	 GestorActor gestoractor = new GestorActor();
-	 private static List<Equipo> personal = new ArrayList<>();
-	 File ficheroActor = new File("actores.csv");
+	private Span status;
+	private static Equipo equipo;
+	private static Grid<Equipo> grid = new Grid<>(Equipo.class);
+	private static GestorActor gestoractor = new GestorActor();
+    private static List<Equipo> personal = new ArrayList<>();
+   
 	 
 	 private static String rol;
 	 
@@ -64,6 +64,8 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 	 }
 
 	private void iniciarGrid() {
+		
+		EquipoDao.obtenerEquipo();
 		
 		grid.addColumn(Equipo::getId).setHeader("Id Actores");
         grid.addColumn(Equipo::getNombre).setHeader("Nombre");
@@ -101,11 +103,11 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 						           Button confirmar = new Button("confirmar");
 						           confirmar.addClickListener(clickEvent -> {
 						        	   try {
-										personal = gestoractor.eliminarActor(actores, ficheroActor, id.getValue());
+										
+										EquipoDao.eliminarEquipo(equipo);
 										
 										
-										
-									} catch (NumberFormatException | IOException e1) {
+									} catch (NumberFormatException e1) {
 										e1.printStackTrace();
 									}
 						           });
@@ -124,8 +126,8 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 						                .set("align-items", "center").set("justify-content", "center");
 						    
 
-							this.eliminarActor(actor);
-						} catch (NumberFormatException | IOException e1) {
+							
+						} catch (NumberFormatException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
@@ -155,7 +157,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 
 						        dialog.setRejectable(true);
 						        dialog.setRejectText("NO");
-						        dialog.addRejectListener(event -parameter> setStatus("Discarded"));
+						        dialog.addRejectListener(event -> setStatus("Discarded"));
 
 						        dialog.setConfirmText("SI");
 						        dialog.addConfirmListener(event ->
@@ -178,8 +180,8 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 						                .set("align-items", "center").set("justify-content", "center");
 						    
 
-							this.eliminarActor(actor);
-						} catch (NumberFormatException | IOException e1) {
+							
+						} catch (NumberFormatException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
@@ -195,17 +197,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 		
 	}
 
-	private Object modificarActor(Actor actor) throws NumberFormatException, IOException {
-		//personal = gestoractor.modificarActor(personal, ficheroActor);
-		return null;
-	}
 
-	private Object eliminarActor(Actor actor) throws NumberFormatException, IOException {
-		//personal = gestoractor.eliminarActor(personal, ficheroActor);
-		return null;
-	} 		
-
-	        
 	    
 
 	
@@ -217,10 +209,9 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 	@Override
 	public void setParameter(BeforeEvent event, String parameter) {
 		this.rol = parameter;
-		 personal= EquipoDao.listarEquipo(rol);
+		personal= EquipoDao.listarEquipo(rol);
 		
-		 iniciarGrid();
-
+		iniciarGrid();
 		
 	}
 

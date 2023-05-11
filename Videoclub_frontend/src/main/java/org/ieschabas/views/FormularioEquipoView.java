@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.ieschabas.clases.Actor;
 import org.ieschabas.clases.Director;
+import org.ieschabas.daos.EquipoDao;
 import org.ieschabas.librerias.GestorActor;
 import org.ieschabas.librerias.GestorDirector;
 
@@ -43,17 +44,7 @@ public class FormularioEquipoView extends HorizontalLayout  {
 		guardarActor.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SUCCESS);
 
 		guardarActor.addClickListener(clickEvent -> {
-			try {
-
-				contadorActor += 1;
-
-				listarActores = gestorActor.crearActor(archivoActor, listarActores, nombre.getValue(),
-						apellidos.getValue(), pais.getValue(), anyoNacimiento.getValue());
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			EquipoDao.guardarEquipo(null);
 		});
 
 		/**
