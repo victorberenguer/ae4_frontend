@@ -36,18 +36,7 @@ public class ListadoPeliculasView extends FormLayout{
 		
 		
 	      
-		 gridPelicula.setItems(peliculas);
-		 Button botonCrear = new Button("Crear Pelicula");
-		 botonCrear.addClickListener(event ->
-		 botonCrear.getUI().ifPresent(ui ->
-	                   ui.navigate("FormularioPeliculaView"))
-	        );
-		 
-		 
-	
-		 
-	        
-	        add(gridPelicula,botonCrear);
+		
 	        
 	}
 
@@ -162,6 +151,21 @@ public class ListadoPeliculasView extends FormLayout{
                 		
                 		)).setHeader("Acciones");
 
+	 gridPelicula.setItems(peliculas);
+	 Button botonCrear = new Button("Crear Pelicula");
+	 botonCrear.addClickListener(event ->
+	 botonCrear.getUI().ifPresent(ui ->
+                   ui.navigate("FormularioPeliculaView"))
+        );
+	 
+	 
+
+	 
+        
+        add(gridPelicula,botonCrear);
+	 
+	 
+	 
 		
 	}
 

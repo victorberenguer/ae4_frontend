@@ -18,6 +18,7 @@ import com.vaadin.flow.router.RouterLink;
 @Route(value = "")
 public class MainView extends AppLayout{
 	 LoginForm loginForm = new LoginForm();
+	 
 	 public MainView() {
 	        DrawerToggle toggle = new DrawerToggle();
 
@@ -32,6 +33,7 @@ public class MainView extends AppLayout{
 	    }
 	    // end::snippet[]
 
+	 
 	    private Tabs getTabs() {
 	        Tabs tabs = new Tabs();
 	        tabs.add(createTab(VaadinIcon.FILM, "Películas"),
@@ -42,6 +44,7 @@ public class MainView extends AppLayout{
 	        return tabs;
 	    }
 
+	    
 	    private Tab createTab(VaadinIcon viewIcon, String viewName) {
 	        Icon icon = viewIcon.create();
 	        icon.getStyle().set("box-sizing", "border-box")
@@ -52,14 +55,48 @@ public class MainView extends AppLayout{
 	        RouterLink link = new RouterLink();
 	        link.add(icon, new Span(viewName));
 	        // Demo has no routes
-	        // link.setRoute(viewClass.java);
+	        link.setRoute(ListadoPeliculasView.class);
 	        link.setTabIndex(-1);
 
 	        return new Tab(link);
 	    }
 	    
+	    private Tab createTabEquipo(VaadinIcon viewIcon, String viewName,String rol) {
+	        Icon icon = viewIcon.create();
+	        icon.getStyle().set("box-sizing", "border-box")
+	                .set("margin-inline-end", "var(--lumo-space-m)")
+	                .set("margin-inline-start", "var(--lumo-space-xs)")
+	                .set("padding", "var(--lumo-space-xs)");
+
+	        RouterLink link = new RouterLink();
+	        link.add(icon, new Span(viewName));
+	        link.setRoute(ListadoEquipoView.class,rol);
+	        link.setTabIndex(-1);
+
+	        return new Tab(link);
+	    }
 	   
 	    
 	   
 	    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

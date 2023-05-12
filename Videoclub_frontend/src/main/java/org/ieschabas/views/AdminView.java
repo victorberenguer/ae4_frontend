@@ -62,7 +62,7 @@ public class AdminView extends AppLayout {
 
         RouterLink link = new RouterLink();
         link.add(icon, new Span(viewName));
-        // link.setRoute(viewClass.java);
+        link.setRoute(ListadoPeliculasView.class);
         link.setTabIndex(-1);
 
         return new Tab(link);

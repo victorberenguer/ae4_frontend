@@ -3,9 +3,11 @@ package org.ieschabas.views;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.ieschabas.clases.Actor;
 import org.ieschabas.clases.Director;
+import org.ieschabas.clases.Equipo;
 import org.ieschabas.daos.EquipoDao;
 import org.ieschabas.librerias.GestorActor;
 import org.ieschabas.librerias.GestorDirector;
@@ -19,17 +21,27 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 
-@Route("FormularioActorView")
+@Route("FormularioEquipoView")
 public class FormularioEquipoView extends HorizontalLayout  {
 
 	GestorActor gestorActor = new GestorActor();
 	FormLayout formularioActor = new FormLayout();
-	private static ArrayList<Actor> listarActores = new ArrayList<Actor>();
+	private static ArrayList<Equipo> equipo = new ArrayList<Equipo>();
 	private static int contadorActor = 0;
 	File archivoActor = new File("actores.csv");
 
 	public FormularioEquipoView() throws IOException {
 		
+		
+		iniciarFormulario();
+		
+		
+		
+	
+
+	}
+
+	private void iniciarFormulario() {
 		TextField nombre = new TextField("Nombre");
 		TextField apellidos = new TextField("Apellidos");
 		TextField pais = new TextField("Pais");
@@ -40,11 +52,17 @@ public class FormularioEquipoView extends HorizontalLayout  {
 		 * click en guardar escriba los datos en el fichero mediante el metodo de
 		 * crearActor
 		 */
-		Button guardarActor = new Button("CrearActor");
+		Button guardarActor = new Button("Crear");
 		guardarActor.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SUCCESS);
 
 		guardarActor.addClickListener(clickEvent -> {
-			EquipoDao.guardarEquipo(null);
+			Equipo equipo = new Equipo();
+			equipo.setNombre(nombre.getValue());
+			equipo.setApellidos(apellidos.getValue());
+			equipo.setPais(pais.getValue());
+			//equipo.setAnyoNacimiento(anyoNacimiento);
+			
+			EquipoDao.guardarEquipo(equipo);
 		});
 
 		/**
@@ -61,7 +79,7 @@ public class FormularioEquipoView extends HorizontalLayout  {
 		formularioActor.setColspan(nombre, 2);
 
 		add(formularioActor);
-
+		
 	}
 	
 

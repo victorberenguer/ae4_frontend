@@ -43,20 +43,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 	        
 	       iniciarGrid();
 	
-	        Button botonCrear = new Button("Crear Actor");
-			 botonCrear.addClickListener(event ->
-			 botonCrear.getUI().ifPresent(ui ->
-		                   ui.navigate("FormularioActorView"))
-		        );
-		        
-		       
-			 getElement().getStyle().set("height", "100%");
-		        grid.setHeight("100%");
-		        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
-		
-	        
-	        
-	        add(grid,botonCrear);
+	       
 	      
 	        
 	       
@@ -144,7 +131,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
                     button.addClickListener(e -> {
 						try {
 				
-						        HorizontalLayout layout = new HorizontalLayout();
+						      HorizontalLayout layout = new HorizontalLayout();
 						        layout.setAlignItems(FlexComponent.Alignment.CENTER);
 						        layout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
@@ -165,7 +152,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 						        
 						          ui.navigate("FormularioActorView"))
 						    
-						);
+						       );
 				
 						       
 
@@ -191,7 +178,22 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 
                 		)).setHeader("Acciones");
 		
+        Button botonCrear = new Button("Crear Actor");
+		 botonCrear.addClickListener(event ->
+		 botonCrear.getUI().ifPresent(ui ->
+		 ui.navigate("FormularioActorView"))
+		 
+				 );
+		 
+	        
+	       
+		 getElement().getStyle().set("height", "100%");
+	        grid.setHeight("100%");
+	        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+	
        
+       
+       add(grid,botonCrear);
               
 	        
 		
