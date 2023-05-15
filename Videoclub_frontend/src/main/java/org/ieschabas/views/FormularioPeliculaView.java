@@ -70,6 +70,7 @@ public class FormularioPeliculaView extends FormLayout {
 	            guardar.addThemeVariants(ButtonVariant.LUMO_PRIMARY,
 	                    ButtonVariant.LUMO_SUCCESS);
 	            guardar.addClickListener(clickEvent -> {
+	            	
 	                	Pelicula pelicula = new Pelicula();
 	                	pelicula.setTitulo(titulo.getValue());
 	            		pelicula.setDescripcion(descripcion.getValue());
@@ -83,7 +84,6 @@ public class FormularioPeliculaView extends FormLayout {
 						Date fecha = fecha1.parse(anyoPublicacion.getValue());
 						pelicula.setAnyoPublicacion(fecha);
 						} catch (ParseException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 	            		
