@@ -36,16 +36,16 @@ public class MainView extends AppLayout{
 	 
 	    private Tabs getTabs() {
 	        Tabs tabs = new Tabs();
-	        tabs.add(createTab(VaadinIcon.FILM, "Películas"),
-	                createTab(VaadinIcon.USER, "Actores"),
-	                createTab(VaadinIcon.USER, "Directores"),
-	                createTab(VaadinIcon.CART, "Alquileres"));
+	        tabs.add(createTabEquipo(VaadinIcon.USER, "Actor", "Actor"),
+	        createTabEquipo(VaadinIcon.USER, "Director", "Director"),
+	        createTabPelicula(VaadinIcon.FILM, "Peliculas"),
+	        createTabAlquiler(VaadinIcon.SHOP, "Alquiler"));
 	        tabs.setOrientation(Tabs.Orientation.VERTICAL);
 	        return tabs;
 	    }
 
 	    
-	    private Tab createTab(VaadinIcon viewIcon, String viewName) {
+	    private Tab createTabPelicula(VaadinIcon viewIcon, String viewName) {
 	        Icon icon = viewIcon.create();
 	        icon.getStyle().set("box-sizing", "border-box")
 	                .set("margin-inline-end", "var(--lumo-space-m)")
@@ -76,6 +76,22 @@ public class MainView extends AppLayout{
 	        return new Tab(link);
 	    }
 	   
+	    
+	    private Tab createTabAlquiler(VaadinIcon viewIcon, String viewName) {
+	        Icon icon = viewIcon.create();
+	        icon.getStyle().set("box-sizing", "border-box")
+	                .set("margin-inline-end", "var(--lumo-space-m)")
+	                .set("margin-inline-start", "var(--lumo-space-xs)")
+	                .set("padding", "var(--lumo-space-xs)");
+
+	        RouterLink link = new RouterLink();
+	        link.add(icon, new Span(viewName));
+	        // Demo has no routes
+	        link.setRoute(ListadoAlquilerView.class);
+	        link.setTabIndex(-1);
+
+	        return new Tab(link);
+	    }
 	    
 	   
 	    
