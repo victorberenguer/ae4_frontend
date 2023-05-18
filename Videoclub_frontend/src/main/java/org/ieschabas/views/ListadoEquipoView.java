@@ -6,16 +6,15 @@ import java.util.List;
 
 import org.ieschabas.clases.Equipo;
 import org.ieschabas.daos.EquipoDao;
-import org.ieschabas.librerias.GestorActor;
 
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -24,13 +23,13 @@ import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 
-@Route("ListadoEquipoView")
+@Route("listadoequipoview")
 public class ListadoEquipoView extends HorizontalLayout implements HasUrlParameter<String> {
 
 	private Span status;
 	private static Equipo equipo;
 	private static Grid<Equipo> grid = new Grid<>(Equipo.class);
-	private static GestorActor gestoractor = new GestorActor();
+	// private static GestorActor gestoractor = new GestorActor();
 	private static List<Equipo> personal = new ArrayList<>();
 
 	private static String rol;
@@ -63,7 +62,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 					status.setVisible(false);
 
 					ConfirmDialog dialog = new ConfirmDialog();
-					dialog.setHeader("Borrrar Actor ");
+					dialog.setHeader("Borrar ");
 					dialog.setText("Seguro que quieres borrar el actor?");
 
 					dialog.setRejectable(true);
@@ -106,6 +105,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 		}
 
 		)).setHeader("Acciones");
+
 		grid.addColumn(new ComponentRenderer<>(Button::new, (button, actor) -> {
 			button.addThemeVariants(ButtonVariant.LUMO_ICON, ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_TERTIARY);
 			button.addClickListener(e -> {
@@ -129,7 +129,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 					dialog.setConfirmText("SI");
 					dialog.addConfirmListener(event -> dialog.getUI().ifPresent(ui ->
 
-					ui.navigate("FormularioActorView"))
+					ui.navigate("FormularioEquipoView"))
 
 					);
 
@@ -154,7 +154,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 		)).setHeader("Acciones");
 
 		Button botonCrear = new Button("Crear");
-		botonCrear.addClickListener(event -> botonCrear.getUI().ifPresent(ui -> ui.navigate("FormularioActorView"))
+		botonCrear.addClickListener(event -> botonCrear.getUI().ifPresent(ui -> ui.navigate("FormularioEquipoView"))
 
 		);
 
@@ -173,9 +173,9 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 
 	@Override
 	public void setParameter(BeforeEvent event, String parameter) {
-		this.rol = parameter;
-		
-		 personal= EquipoDao.listarEquipo(rol);
+		ListadoEquipoView.rol = parameter;
+
+		personal = EquipoDao.listarEquipo(rol);
 
 		iniciarGrid();
 

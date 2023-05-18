@@ -2,15 +2,14 @@ package org.ieschabas.views;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.ieschabas.clases.Actor;
-import org.ieschabas.clases.Director;
 import org.ieschabas.clases.Equipo;
 import org.ieschabas.daos.EquipoDao;
 import org.ieschabas.librerias.GestorActor;
-import org.ieschabas.librerias.GestorDirector;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -21,23 +20,23 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 
-@Route("FormularioEquipoView")
+@Route("formularioequipoview")
 public class FormularioEquipoView extends HorizontalLayout  {
 
 	GestorActor gestorActor = new GestorActor();
 	FormLayout formularioActor = new FormLayout();
-	private static ArrayList<Equipo> equipo = new ArrayList<Equipo>();
-	private static int contadorActor = 0;
-	File archivoActor = new File("actores.csv");
+	//private static ArrayList<Equipo> equipo = new ArrayList<>();
+	//private static int contadorActor = 0;
+	//File archivoActor = new File("actores.csv");
 
 	public FormularioEquipoView() throws IOException {
-		
-		
+
+
 		iniciarFormulario();
-		
-		
-		
-	
+
+
+
+
 
 	}
 
@@ -60,7 +59,16 @@ public class FormularioEquipoView extends HorizontalLayout  {
 			equipo.setNombre(nombre.getValue());
 			equipo.setApellidos(apellidos.getValue());
 			equipo.setPais(pais.getValue());
-			//equipo.setAnyoNacimiento(anyoNacimiento);
+
+			SimpleDateFormat fecha1 = new SimpleDateFormat("yyyy");
+
+			try {
+			Date fecha = fecha1.parse(anyoNacimiento.getValue());
+			equipo.setAnyoNacimiento(fecha);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
 			
 			EquipoDao.guardarEquipo(equipo);
 		});
@@ -79,8 +87,8 @@ public class FormularioEquipoView extends HorizontalLayout  {
 		formularioActor.setColspan(nombre, 2);
 
 		add(formularioActor);
-		
+
 	}
-	
+
 
 }

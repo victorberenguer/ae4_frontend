@@ -3,9 +3,7 @@ package org.ieschabas.views;
 
 
 import com.vaadin.flow.component.applayout.AppLayout;
-
 import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -14,15 +12,11 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
-
-import java.util.ArrayList;
-
-import org.ieschabas.clases.Actor;
 @Route("admin-view")
 // tag::snippet[]
 public class AdminView extends AppLayout {
-	 
-	 
+
+
     public AdminView() {
         DrawerToggle toggle = new DrawerToggle();
 
@@ -34,10 +28,10 @@ public class AdminView extends AppLayout {
 
         addToDrawer(tabs);
         addToNavbar(toggle, title);
-        
-      
-        
-        
+
+
+
+
     }
     // end::snippet[]
 
@@ -49,8 +43,8 @@ public class AdminView extends AppLayout {
                 createTab(VaadinIcon.PACKAGE, "Alquileres"));
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         return tabs;
-        
-        
+
+
     }
 
     private Tab createTab(VaadinIcon viewIcon, String viewName) {
@@ -67,7 +61,7 @@ public class AdminView extends AppLayout {
 
         return new Tab(link);
     }
-    
+
     private Tab createTabEquipo(VaadinIcon viewIcon, String viewName,String rol) {
         Icon icon = viewIcon.create();
         icon.getStyle().set("box-sizing", "border-box")
@@ -82,14 +76,14 @@ public class AdminView extends AppLayout {
 
         return new Tab(link);
     }
-    
-      // tag::snippet[]
-   
 
-    
-    
-    
-    
+      // tag::snippet[]
+
+
+
+
+
+
 }
 // end::snippet[]
 

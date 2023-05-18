@@ -18,7 +18,7 @@ import com.vaadin.flow.router.RouterLink;
 @Route(value = "")
 public class MainView extends AppLayout{
 	 LoginForm loginForm = new LoginForm();
-	 
+
 	 public MainView() {
 	        DrawerToggle toggle = new DrawerToggle();
 
@@ -33,7 +33,7 @@ public class MainView extends AppLayout{
 	    }
 	    // end::snippet[]
 
-	 
+
 	    private Tabs getTabs() {
 	        Tabs tabs = new Tabs();
 	        tabs.add(createTabEquipo(VaadinIcon.USER, "Actor", "Actor"),
@@ -44,7 +44,7 @@ public class MainView extends AppLayout{
 	        return tabs;
 	    }
 
-	    
+
 	    private Tab createTabPelicula(VaadinIcon viewIcon, String viewName) {
 	        Icon icon = viewIcon.create();
 	        icon.getStyle().set("box-sizing", "border-box")
@@ -60,7 +60,7 @@ public class MainView extends AppLayout{
 
 	        return new Tab(link);
 	    }
-	    
+
 	    private Tab createTabEquipo(VaadinIcon viewIcon, String viewName,String rol) {
 	        Icon icon = viewIcon.create();
 	        icon.getStyle().set("box-sizing", "border-box")
@@ -75,8 +75,8 @@ public class MainView extends AppLayout{
 
 	        return new Tab(link);
 	    }
-	   
-	    
+
+
 	    private Tab createTabAlquiler(VaadinIcon viewIcon, String viewName) {
 	        Icon icon = viewIcon.create();
 	        icon.getStyle().set("box-sizing", "border-box")
@@ -92,9 +92,9 @@ public class MainView extends AppLayout{
 
 	        return new Tab(link);
 	    }
-	    
-	   
-	    
+
+
+
 }
 
 

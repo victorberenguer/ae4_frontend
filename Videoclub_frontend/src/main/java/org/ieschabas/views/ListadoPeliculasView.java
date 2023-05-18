@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import org.ieschabas.clases.Pelicula;
 import org.ieschabas.daos.PeliculaDao;
 import org.ieschabas.librerias.GestorPeliculas;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -21,29 +21,29 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.Route;
 
-@Route("ListadoPeliculasView")
+@Route("listadopeliculasVview")
 public class ListadoPeliculasView extends FormLayout{
-	
+
 	private Span status;
 	 Grid<Pelicula> gridPelicula = new Grid<>(Pelicula.class, false);
 	 GestorPeliculas gestorPeliculas = new GestorPeliculas();
-	 private static ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
+	 private static ArrayList<Pelicula> peliculas = new ArrayList<>();
 	 File ficheroPelicula= new File("peliculas.csv");
-	 
+
 	public  ListadoPeliculasView() throws IOException  {
-		
+
 		iniciarGrid();
-		
-		
-	      
-		
-	        
+
+
+
+
+
 	}
 
 	private void iniciarGrid() {
 		PeliculaDao.obtenerPelicula();
         // tag::snippet[]
-	   
+
 	 gridPelicula.addColumn(Pelicula::getId).setHeader("Id Pelicula");
 	 gridPelicula.addColumn(Pelicula::getTitulo).setHeader("Pelicula");
 	 gridPelicula.addColumn(Pelicula::getCategoria).setHeader("Categoria");
@@ -77,7 +77,7 @@ public class ListadoPeliculasView extends FormLayout{
 						        dialog.setConfirmText("SI");
 						        dialog.addConfirmListener(event -> setStatus("Se ha eliminado la pelicula correctamente"));
 
-						       
+
 
 						        dialog.open();
 
@@ -86,19 +86,19 @@ public class ListadoPeliculasView extends FormLayout{
 						        getStyle().set("position", "fixed").set("top", "0").set("right", "0")
 						                .set("bottom", "0").set("left", "0").set("display", "flex")
 						                .set("align-items", "center").set("justify-content", "center");
-							
-							
-							
+
+
+
 						} catch (NumberFormatException e1) {e1.printStackTrace();}
 					});
                     button.setIcon(new Icon(VaadinIcon.TRASH));
                     }
 
-                
-            
-                		
+
+
+
                 		)).setHeader("Acciones");
-        
+
 	 gridPelicula.addColumn(
                 new ComponentRenderer<>(Button::new, (button, pelicula) ->{
                     button.addThemeVariants(ButtonVariant.LUMO_ICON,
@@ -124,11 +124,11 @@ public class ListadoPeliculasView extends FormLayout{
 						        dialog.setConfirmText("SI");
 						        dialog.addConfirmListener(event ->
 						        dialog.getUI().ifPresent(ui ->
-						        
+
 					              ui.navigate("FormularioPeliculaView"))
-					        
+
 					   );
-						       
+
 
 						        dialog.open();
 
@@ -139,16 +139,16 @@ public class ListadoPeliculasView extends FormLayout{
 						        getStyle().set("position", "fixed").set("top", "0").set("right", "0")
 						                .set("bottom", "0").set("left", "0").set("display", "flex")
 						                .set("align-items", "center").set("justify-content", "center");
-							
+
 
 						} catch (NumberFormatException e1) {e1.printStackTrace();}
 					});
                     button.setIcon(new Icon(VaadinIcon.BOOK));
                     }
 
-                
-            
-                		
+
+
+
                 		)).setHeader("Acciones");
 
 	 gridPelicula.setItems(peliculas);
@@ -157,24 +157,24 @@ public class ListadoPeliculasView extends FormLayout{
 	 botonCrear.getUI().ifPresent(ui ->
                    ui.navigate("FormularioPeliculaView"))
         );
-	 
-	 
 
-	 
-        
+
+
+
+
         add(gridPelicula,botonCrear);
-	 
-	 
-	 
-		
+
+
+
+
 	}
 
 	private void setStatus(String value) {
 	    status.setText("Estado;" + value);
 	    status.setVisible(true);
-	   
-	    
+
+
 	}
 
-	
+
 }
