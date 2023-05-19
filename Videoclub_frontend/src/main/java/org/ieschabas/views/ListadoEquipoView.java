@@ -7,6 +7,7 @@ import java.util.List;
 import org.ieschabas.clases.Equipo;
 import org.ieschabas.daos.EquipoDao;
 
+import com.mysql.cj.x.protobuf.MysqlxNotice.SessionStateChanged.Parameter;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
@@ -37,12 +38,19 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 	public ListadoEquipoView() throws IOException {
 
 		iniciarGrid();
+		
+		if(rol == "Actor") {
+			
+		}else if(rol == "Director") {
+			
+		}
+		
 
 	}
 
 	private void iniciarGrid() {
 
-		EquipoDao.obtenerEquipo();
+		personal = EquipoDao.obtenerEquipo();
 
 		grid.addColumn(Equipo::getId).setHeader("Id Actores");
 		grid.addColumn(Equipo::getNombre).setHeader("Nombre");
@@ -129,7 +137,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 					dialog.setConfirmText("SI");
 					dialog.addConfirmListener(event -> dialog.getUI().ifPresent(ui ->
 
-					ui.navigate("FormularioEquipoView"))
+					ui.navigate("fromularioequipoview"))
 
 					);
 

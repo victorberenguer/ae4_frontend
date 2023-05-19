@@ -3,6 +3,7 @@ package org.ieschabas.views;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.ieschabas.clases.Pelicula;
 import org.ieschabas.daos.PeliculaDao;
@@ -21,13 +22,13 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.Route;
 
-@Route("listadopeliculasVview")
+@Route("listadopeliculasview")
 public class ListadoPeliculasView extends FormLayout{
 
 	private Span status;
 	 Grid<Pelicula> gridPelicula = new Grid<>(Pelicula.class, false);
 	 GestorPeliculas gestorPeliculas = new GestorPeliculas();
-	 private static ArrayList<Pelicula> peliculas = new ArrayList<>();
+	 private static List<Pelicula> peliculas = new ArrayList<>();
 	 File ficheroPelicula= new File("peliculas.csv");
 
 	public  ListadoPeliculasView() throws IOException  {
@@ -41,7 +42,7 @@ public class ListadoPeliculasView extends FormLayout{
 	}
 
 	private void iniciarGrid() {
-		PeliculaDao.obtenerPelicula();
+		peliculas = PeliculaDao.obtenerPelicula();
         // tag::snippet[]
 
 	 gridPelicula.addColumn(Pelicula::getId).setHeader("Id Pelicula");
@@ -125,7 +126,7 @@ public class ListadoPeliculasView extends FormLayout{
 						        dialog.addConfirmListener(event ->
 						        dialog.getUI().ifPresent(ui ->
 
-					              ui.navigate("FormularioPeliculaView"))
+					              ui.navigate("formulariopeliculaview"))
 
 					   );
 
@@ -152,10 +153,11 @@ public class ListadoPeliculasView extends FormLayout{
                 		)).setHeader("Acciones");
 
 	 gridPelicula.setItems(peliculas);
+	 
 	 Button botonCrear = new Button("Crear Pelicula");
 	 botonCrear.addClickListener(event ->
 	 botonCrear.getUI().ifPresent(ui ->
-                   ui.navigate("FormularioPeliculaView"))
+                   ui.navigate("formulariopeliculaview"))
         );
 
 

@@ -31,7 +31,9 @@ public class FormularioEquipoView extends HorizontalLayout  {
 
 	public FormularioEquipoView() throws IOException {
 
-
+		
+		
+		
 		iniciarFormulario();
 
 
