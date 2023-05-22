@@ -38,8 +38,8 @@ public class AdminView extends AppLayout {
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
         tabs.add(createTab(VaadinIcon.DASHBOARD, "Películas"),
-                createTabEquipo(VaadinIcon.CART, "Actores","actor"),
-                createTabEquipo(VaadinIcon.USER_HEART, "Directores","director"),
+                createTabEquipo(VaadinIcon.CART, "Actores","ACTOR"),
+                createTabEquipo(VaadinIcon.USER_HEART, "Directores","DIRECTOR"),
                 createTab(VaadinIcon.PACKAGE, "Alquileres"));
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         return tabs;

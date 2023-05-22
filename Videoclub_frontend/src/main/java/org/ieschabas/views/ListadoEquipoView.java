@@ -37,20 +37,15 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 
 	public ListadoEquipoView() throws IOException {
 
-		iniciarGrid();
 		
-		if(rol == "Actor") {
-			
-		}else if(rol == "Director") {
-			
-		}
+		
 		
 
 	}
 
 	private void iniciarGrid() {
 
-		personal = EquipoDao.obtenerEquipo();
+		personal = EquipoDao.obtenerEquipo(personal);
 
 		grid.addColumn(Equipo::getId).setHeader("Id Actores");
 		grid.addColumn(Equipo::getNombre).setHeader("Nombre");
@@ -184,8 +179,12 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 		ListadoEquipoView.rol = parameter;
 
 		personal = EquipoDao.listarEquipo(rol);
-
+		
 		iniciarGrid();
+		
+		
+		
+		
 
 	}
 

@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.ieschabas.clases.Equipo;
 import org.ieschabas.daos.EquipoDao;
@@ -17,15 +18,18 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 
 
 @Route("formularioequipoview")
-public class FormularioEquipoView extends HorizontalLayout  {
+public class FormularioEquipoView extends HorizontalLayout implements HasUrlParameter<String> {
 
+	private static String rol;
 	GestorActor gestorActor = new GestorActor();
 	FormLayout formularioActor = new FormLayout();
-	//private static ArrayList<Equipo> equipo = new ArrayList<>();
+	private static List<Equipo> equipo = new ArrayList<>();
 	//private static int contadorActor = 0;
 	//File archivoActor = new File("actores.csv");
 
@@ -90,6 +94,25 @@ public class FormularioEquipoView extends HorizontalLayout  {
 
 		add(formularioActor);
 
+	}
+
+	@Override
+	public void setParameter(BeforeEvent event, String parameter) {
+		FormularioEquipoView.rol = parameter;
+
+		equipo = EquipoDao.listarEquipo(rol);
+		if(rol == "Actor") {
+
+			iniciarFormulario();
+			
+		}else if(rol == "Director") {
+			
+			iniciarFormulario();
+		
+			
+		}
+		
+			
 	}
 
 

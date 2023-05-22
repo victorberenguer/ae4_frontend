@@ -36,8 +36,8 @@ public class MainView extends AppLayout{
 
 	    private Tabs getTabs() {
 	        Tabs tabs = new Tabs();
-	        tabs.add(createTabEquipo(VaadinIcon.USER, "Actor", "Actor"),
-	        createTabEquipo(VaadinIcon.USER, "Director", "Director"),
+	        tabs.add(createTabEquipo(VaadinIcon.USER, "Actor", "ACTOR"),
+	        createTabEquipo(VaadinIcon.USER, "Director", "DIRECTOR"),
 	        createTabPelicula(VaadinIcon.FILM, "Peliculas"),
 	        createTabAlquiler(VaadinIcon.SHOP, "Alquiler"));
 	        tabs.setOrientation(Tabs.Orientation.VERTICAL);
