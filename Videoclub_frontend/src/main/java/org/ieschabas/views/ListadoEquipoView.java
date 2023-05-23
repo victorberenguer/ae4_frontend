@@ -7,7 +7,7 @@ import java.util.List;
 import org.ieschabas.clases.Equipo;
 import org.ieschabas.daos.EquipoDao;
 
-import com.mysql.cj.x.protobuf.MysqlxNotice.SessionStateChanged.Parameter;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
@@ -52,6 +52,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 		grid.addColumn(Equipo::getApellidos).setHeader("Apellidos");
 		grid.addColumn(Equipo::getPais).setHeader("Pais");
 		grid.addColumn(Equipo::getAnyoNacimiento).setHeader("Año de Nacimiento");
+		grid.addColumn(Equipo::getRol).setHeader("Rol");
 		grid.addColumn(new ComponentRenderer<>(Button::new, (button, actor) -> {
 			button.addThemeVariants(ButtonVariant.LUMO_ICON, ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_TERTIARY);
 			button.addClickListener(e -> {
@@ -167,6 +168,7 @@ public class ListadoEquipoView extends HorizontalLayout implements HasUrlParamet
 
 		add(grid, botonCrear);
 
+		grid.setItems(personal);
 	}
 
 	private void setStatus(String value) {

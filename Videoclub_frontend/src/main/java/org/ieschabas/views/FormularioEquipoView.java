@@ -38,7 +38,6 @@ public class FormularioEquipoView extends HorizontalLayout implements HasUrlPara
 		
 		
 		
-		iniciarFormulario();
 
 
 
