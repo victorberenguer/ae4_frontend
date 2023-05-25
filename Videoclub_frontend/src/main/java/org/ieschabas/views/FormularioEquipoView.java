@@ -1,6 +1,5 @@
 package org.ieschabas.views;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +9,6 @@ import java.util.List;
 
 import org.ieschabas.clases.Equipo;
 import org.ieschabas.daos.EquipoDao;
-import org.ieschabas.librerias.GestorActor;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -27,7 +25,6 @@ import com.vaadin.flow.router.Route;
 public class FormularioEquipoView extends HorizontalLayout implements HasUrlParameter<String> {
 
 	private static String rol;
-	GestorActor gestorActor = new GestorActor();
 	FormLayout formularioActor = new FormLayout();
 	private static List<Equipo> equipo = new ArrayList<>();
 	//private static int contadorActor = 0;

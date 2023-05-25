@@ -3,7 +3,6 @@ package org.ieschabas.views;
 
 
 
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +14,6 @@ import org.ieschabas.daos.PeliculaDao;
 import org.ieschabas.enums.Categoria;
 import org.ieschabas.enums.Formato;
 import org.ieschabas.enums.Valoracion;
-import org.ieschabas.librerias.GestorPeliculas;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -29,11 +27,11 @@ import com.vaadin.flow.router.Route;
 
 @Route("formulariopeliculaview")
 public class FormularioPeliculaView extends FormLayout {
-	GestorPeliculas gestorPeliculas = new GestorPeliculas();
+	//GestorPeliculas gestorPeliculas = new GestorPeliculas();
 	ArrayList<Pelicula> listarPelicula = new ArrayList<>();
 	FormLayout formularioPelicula = new FormLayout();
 
-	File ficheroPelicula = new File("peliculas.csv");
+	//File ficheroPelicula = new File("peliculas.csv");
 
     public FormularioPeliculaView() throws IOException {
 
